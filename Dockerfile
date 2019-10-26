@@ -12,8 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-FROM gcc:latest
+FROM gcc:8
 
+# check version of gcc
+RUN gcc --version && \
+    g++ --version && \
+    gcov --version
+
+# update existing softwares installed with apt
 RUN apt update && apt upgrade -y
 
 # CMake
