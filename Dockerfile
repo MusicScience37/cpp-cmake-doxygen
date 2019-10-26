@@ -53,3 +53,10 @@ RUN clang --version && \
     clang++ --version && \
     clang-tidy --version && \
     clang-format --version
+
+# lcov (gcov is in gcc)
+WORKDIR /usr/local/lcov
+RUN wget -q https://github.com/linux-test-project/lcov/releases/download/v1.14/lcov-1.14.tar.gz && \
+    tar xf lcov-1.14.tar.gz && \
+    make -C lcov-1.14 install
+RUN lcov --version
