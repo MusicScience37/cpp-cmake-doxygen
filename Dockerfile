@@ -12,8 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-FROM gcc:latest
+FROM gcc:8
 
+# check version of gcc
+RUN gcc --version && \
+    g++ --version && \
+    gcov --version
+
+# update existing softwares installed with apt
 RUN apt update && apt upgrade -y
 
 # CMake
@@ -53,3 +59,10 @@ RUN clang --version && \
     clang++ --version && \
     clang-tidy --version && \
     clang-format --version
+
+# lcov (gcov is in gcc)
+WORKDIR /usr/local/lcov
+RUN wget -q https://github.com/linux-test-project/lcov/releases/download/v1.14/lcov-1.14.tar.gz && \
+    tar xf lcov-1.14.tar.gz && \
+    make -C lcov-1.14 install
+RUN lcov --version
