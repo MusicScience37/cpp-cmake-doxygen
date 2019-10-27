@@ -10,6 +10,7 @@ This project develops a docker image for c++ development with following tools:
 - [Doxygen](http://www.doxygen.nl/)
 - [Plantuml](http://plantuml.com/en/)
 - [clang](https://clang.llvm.org/) and related tools in LLVM
+- [Python3](https://www.python.org/) with pip command
 
 Repositories:
 
