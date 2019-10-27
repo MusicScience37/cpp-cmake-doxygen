@@ -33,7 +33,7 @@ RUN cmake --version
 RUN apt install -y default-jre graphviz
 RUN java --version
 WORKDIR /usr/local/plantuml
-RUN wget -q -O plantuml.jar http://sourceforge.net/projects/plantuml/files/plantuml.jar/download
+RUN wget https://downloads.sourceforge.net/project/plantuml/plantuml.jar
 ENV PLANTUML_JAR_PATH="/usr/local/plantuml/plantuml.jar"
 RUN java -jar ${PLANTUML_JAR_PATH} -version
 
