@@ -33,7 +33,7 @@ RUN cmake --version
 RUN apt install -y default-jre graphviz
 RUN java --version
 WORKDIR /usr/local/plantuml
-RUN wget -q http://sourceforge.net/projects/plantuml/files/plantuml.jar
+RUN wget -q https://downloads.sourceforge.net/project/plantuml/plantuml.jar
 ENV PLANTUML_JAR_PATH="/usr/local/plantuml/plantuml.jar"
 RUN java -jar ${PLANTUML_JAR_PATH} -version
 
@@ -66,3 +66,9 @@ RUN wget -q https://github.com/linux-test-project/lcov/releases/download/v1.14/l
     tar xf lcov-1.14.tar.gz && \
     make -C lcov-1.14 install
 RUN lcov --version
+
+# python3
+WORKDIR /root
+RUN apt install -y python3-pip
+RUN python3 --version && \
+    pip3 --version

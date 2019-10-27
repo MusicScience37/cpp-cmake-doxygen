@@ -1,5 +1,6 @@
 # cpp-cmake-doxygen
 
+[![pipeline status](https://gitlab.com/MusicScience37/cpp-cmake-doxygen/badges/master/pipeline.svg)](https://gitlab.com/MusicScience37/cpp-cmake-doxygen/commits/master)
 [![pipeline status](https://gitlab.com/MusicScience37/cpp-cmake-doxygen/badges/develop/pipeline.svg)](https://gitlab.com/MusicScience37/cpp-cmake-doxygen/commits/develop)
 
 This project develops a docker image for c++ development with following tools:
@@ -9,6 +10,7 @@ This project develops a docker image for c++ development with following tools:
 - [Doxygen](http://www.doxygen.nl/)
 - [Plantuml](http://plantuml.com/en/)
 - [clang](https://clang.llvm.org/) and related tools in LLVM
+- [Python3](https://www.python.org/) with pip command
 
 Repositories:
 
