@@ -69,6 +69,6 @@ RUN lcov --version
 
 # python3
 WORKDIR /root
-RUN apt install python3-pip
+RUN apt install -y python3-pip
 RUN python3 --version && \
     pip3 --version
