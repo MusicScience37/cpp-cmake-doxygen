@@ -1,5 +1,5 @@
 sut:
   build: .
   volumes:
-    - ./test:/home/test
-  command: /home/test/run_test.sh
+    - ./test:/home/test/test
+  entrypoint: /home/test/test/run_test.sh
