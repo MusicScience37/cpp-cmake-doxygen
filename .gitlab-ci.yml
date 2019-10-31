@@ -12,6 +12,9 @@ docker-build-master:
     - docker build --pull -t "$CI_REGISTRY_IMAGE" .
     - sh run_test.sh
     - docker push "$CI_REGISTRY_IMAGE"
+  artifacts:
+    paths:
+      - test/build
   only:
     - master
 
@@ -28,5 +31,8 @@ docker-build:
     - docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" .
     - sh run_test.sh
     - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+  artifacts:
+    paths:
+      - test/build
   except:
     - master

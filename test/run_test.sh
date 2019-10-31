@@ -19,7 +19,9 @@
 # move to the test directory
 cd $(dirname $0)
 
-# test of building a library and a test
+echo ""
+echo ">> build with cmake"
+echo ""
 rm -rf build
 mkdir build
 cd build
@@ -27,7 +29,9 @@ cmake ..
 cmake --build .
 ctest -V .
 
-# collect test coverage
+echo ""
+echo ">> collect coverage"
+echo ""
 COV=./coverage/coverage.info
 HTML=./coverage/html
 ROOT=$(realpath $(dirname $0))/src
@@ -37,3 +41,9 @@ lcov --rc lcov_branch_coverage=1 --extract $COV "${ROOT}/*" --output-file $COV
 lcov --rc lcov_branch_coverage=1 --remove $COV "*/Test/*" --output-file $COV
 lcov --rc lcov_branch_coverage=1 --list $COV
 genhtml --rc lcov_branch_coverage=1 --output-directory $HTML $COV
+
+cd ../
+echo ""
+echo ">> doxygen"
+echo ""
+doxygen
