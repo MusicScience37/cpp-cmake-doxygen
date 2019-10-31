@@ -1,5 +1,9 @@
 # cpp-cmake-doxygen
 
+[![dockeri.co](https://dockeri.co/image/musicscience37/cpp-cmake-doxygen)](https://hub.docker.com/r/musicscience37/cpp-cmake-doxygen)
+
+![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/MusicScience37/cpp-cmake-doxygen?label=latest)
+
 [![pipeline status](https://gitlab.com/MusicScience37/cpp-cmake-doxygen/badges/master/pipeline.svg)](https://gitlab.com/MusicScience37/cpp-cmake-doxygen/commits/master)
 [![pipeline status](https://gitlab.com/MusicScience37/cpp-cmake-doxygen/badges/develop/pipeline.svg)](https://gitlab.com/MusicScience37/cpp-cmake-doxygen/commits/develop)
 
