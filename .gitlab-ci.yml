@@ -6,9 +6,12 @@ docker-build-master:
   services:
     - docker:dind
   before_script:
+    - curl -L https://github.com/docker/compose/releases/download/1.24.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+    - chmod +x /usr/local/bin/docker-compose
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
     - docker build --pull -t "$CI_REGISTRY_IMAGE" .
+    - ./run_test.sh
     - docker push "$CI_REGISTRY_IMAGE"
   only:
     - master
@@ -20,9 +23,12 @@ docker-build:
   services:
     - docker:dind
   before_script:
+    - curl -L https://github.com/docker/compose/releases/download/1.24.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+    - chmod +x /usr/local/bin/docker-compose
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
     - docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" .
+    - ./run_test.sh
     - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
   except:
     - master
