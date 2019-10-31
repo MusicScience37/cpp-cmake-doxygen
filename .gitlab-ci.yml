@@ -1,12 +1,12 @@
 # This file is Gitlab's template, but no change was needed.
 docker-build-master:
-  image:
-    name: docker/compose:1.24.0
-    entrypoint: ["/bin/sh", "-c"]
+  image: tmaier/docker-compose:latest
   stage: build
   services:
     - docker:dind
   before_script:
+    - docker info
+    - docker-compose --version
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
     - docker build --pull -t "$CI_REGISTRY_IMAGE" .
@@ -16,13 +16,13 @@ docker-build-master:
     - master
 
 docker-build:
-  image:
-    name: docker/compose:1.24.0
-    entrypoint: ["/bin/sh", "-c"]
+  image: tmaier/docker-compose:latest
   stage: build
   services:
     - docker:dind
   before_script:
+    - docker info
+    - docker-compose --version
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
     - docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" .
