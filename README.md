@@ -16,7 +16,7 @@ This project develops a docker image for c++ development with following tools:
 |                Tool                 | Version  |              Note               |
 | :---------------------------------- | :------- | :------------------------------ |
 | [gcc](https://gcc.gnu.org/)         | 8.3.0    |                                 |
-| [CMake](https://cmake.org/)         | 3.15.4   |                                 |
+| [CMake](https://cmake.org/)         | 3.15.5   |                                 |
 | [Plantuml](http://plantuml.com/en/) | (latest) |                                 |
 | [clang](https://clang.llvm.org/)    | 9.0.1    | clang, clang++, clang-tidy, ... |
 | [Python](https://www.python.org/)   | 3.7      | with pip3 command               |
