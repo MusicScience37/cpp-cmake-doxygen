@@ -25,7 +25,7 @@ echo ""
 rm -rf build
 mkdir build
 cd build
-cmake ..
+cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
 cmake --build .
 ctest -V .
 
@@ -47,3 +47,20 @@ echo ""
 echo ">> doxygen"
 echo ""
 doxygen
+
+echo ""
+echo ">> clang-tidy"
+echo ""
+clang-tidy -checks=* -p=build/compile_commands.json src/add.cpp \
+    | tee build/clang-tidy.log
+
+echo ""
+echo ">> python-pip"
+echo ""
+cd build
+git clone https://github.com/PSPDFKit-labs/clang-tidy-to-junit.git clang-tidy-to-junit
+cat clang-tidy.log \
+    | python3 clang-tidy-to-junit/clang-tidy-to-junit.py $(realpath $(dirname $0)) \
+    > clang-tidy-junit.xml
+pip3 install junit2html
+python3 -m junit2htmlreport clang-tidy-junit.xml clang-tidy-junit.html
