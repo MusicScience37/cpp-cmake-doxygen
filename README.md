@@ -2,6 +2,10 @@
 
 [![dockeri.co](https://dockeri.co/image/musicscience37/cpp-cmake-doxygen)](https://hub.docker.com/r/musicscience37/cpp-cmake-doxygen)
 
+![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/musicscience37/cpp-cmake-doxygen)
+![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/musicscience37/cpp-cmake-doxygen)
+
+![GitHub](https://img.shields.io/github/license/musicscience37/cpp-cmake-doxygen)
 ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/MusicScience37/cpp-cmake-doxygen?label=latest)
 
 [![pipeline status](https://gitlab.com/MusicScience37/cpp-cmake-doxygen/badges/master/pipeline.svg)](https://gitlab.com/MusicScience37/cpp-cmake-doxygen/commits/master)
@@ -9,12 +13,13 @@
 
 This project develops a docker image for c++ development with following tools:
 
-- [gcc](https://gcc.gnu.org/)
-- [CMake](https://cmake.org/)
-- [Doxygen](http://www.doxygen.nl/)
-- [Plantuml](http://plantuml.com/en/)
-- [clang](https://clang.llvm.org/) and related tools in LLVM
-- [Python3](https://www.python.org/) with pip command
+|                Tool                 | Version  |              Note               |
+| :---------------------------------- | :------- | :------------------------------ |
+| [gcc](https://gcc.gnu.org/)         | 8.3.0    |                                 |
+| [CMake](https://cmake.org/)         | 3.15.4   |                                 |
+| [Plantuml](http://plantuml.com/en/) | (latest) |                                 |
+| [clang](https://clang.llvm.org/)    | 9.0.1    | clang, clang++, clang-tidy, ... |
+| [Python](https://www.python.org/)   | 3.7      | with pip3 command               |
 
 Repositories:
 
@@ -22,6 +27,8 @@ Repositories:
   : for development
 - [Github](https://github.com/MusicScience37/cpp-cmake-doxygen)
   : for use in [Docker hub](https://hub.docker.com/) to build docker images
+- [Docker Hub](https://hub.docker.com/r/musicscience37/cpp-cmake-doxygen)
+  : for easier use of the container
 
 ## Getting Started
 
