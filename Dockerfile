@@ -24,9 +24,9 @@ RUN apt update && apt upgrade -y
 
 # CMake
 WORKDIR /usr/local/cmake
-RUN wget -q https://github.com/Kitware/CMake/releases/download/v3.15.4/cmake-3.15.4-Linux-x86_64.tar.gz && \
-    tar xf cmake-3.15.4-Linux-x86_64.tar.gz
-ENV PATH=/usr/local/cmake/cmake-3.15.4-Linux-x86_64/bin:$PATH
+RUN wget -q https://github.com/Kitware/CMake/releases/download/v3.15.5/cmake-3.15.5-Linux-x86_64.tar.gz && \
+    tar xf cmake-3.15.5-Linux-x86_64.tar.gz
+ENV PATH=/usr/local/cmake/cmake-3.15.5-Linux-x86_64/bin:$PATH
 RUN cmake --version
 
 # Plantuml for Doxygen
