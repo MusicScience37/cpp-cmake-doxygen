@@ -16,5 +16,5 @@
 
 # this is a shell script to build and test an image
 
-docker-compose -f docker-compose.test.yaml up
-docker-compose -f docker-compose.test.yaml down
+docker-compose -f docker-compose.test.yml up
+docker-compose -f docker-compose.test.yml down
