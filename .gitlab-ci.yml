@@ -1,4 +1,3 @@
-# This file is Gitlab's template, but no change was needed.
 docker-build-master:
   image: tmaier/docker-compose:latest
   stage: build
