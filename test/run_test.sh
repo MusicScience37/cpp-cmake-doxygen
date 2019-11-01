@@ -44,6 +44,12 @@ genhtml --rc lcov_branch_coverage=1 --output-directory $HTML $COV
 
 cd ../
 echo ""
+echo ">> PlantUML"
+echo ""
+mkdir build/uml
+java -jar ${PLANTUML_JAR_PATH} uml/test_sequence.puml -o $(pwd)/build/uml -tsvg
+
+echo ""
 echo ">> doxygen"
 echo ""
 doxygen
@@ -51,16 +57,17 @@ doxygen
 echo ""
 echo ">> clang-tidy"
 echo ""
+mkdir build/clang-tidy
 clang-tidy -checks=* -p=build/compile_commands.json src/add.cpp \
-    | tee build/clang-tidy.log
+    | tee build/clang-tidy/clang-tidy.log
 
 echo ""
 echo ">> python-pip"
 echo ""
 cd build
 git clone https://github.com/PSPDFKit-labs/clang-tidy-to-junit.git clang-tidy-to-junit
-cat clang-tidy.log \
+cat clang-tidy/clang-tidy.log \
     | python3 clang-tidy-to-junit/clang-tidy-to-junit.py $(realpath $(dirname $0)) \
-    > clang-tidy-junit.xml
+    > clang-tidy/clang-tidy-junit.xml
 pip3 install junit2html
-python3 -m junit2htmlreport clang-tidy-junit.xml clang-tidy-junit.html
+python3 -m junit2htmlreport clang-tidy/clang-tidy-junit.xml clang-tidy/clang-tidy-junit.html
