@@ -34,7 +34,7 @@ docker pull musicscience37/cpp-cmake-doxygen
 
 ## Running the tests
 
-Tests of commands are done in build process.
+To test, run `run_test.sh` shell script in the project root directory.
 
 ## Authors
 
