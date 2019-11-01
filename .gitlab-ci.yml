@@ -1,28 +1,37 @@
-# This file is Gitlab's template, but no change was needed.
 docker-build-master:
-  # Official docker image.
-  image: docker:latest
+  image: tmaier/docker-compose:latest
   stage: build
   services:
     - docker:dind
   before_script:
+    - docker info
+    - docker-compose --version
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
     - docker build --pull -t "$CI_REGISTRY_IMAGE" .
+    - sh run_test.sh
     - docker push "$CI_REGISTRY_IMAGE"
+  artifacts:
+    paths:
+      - test/build
   only:
     - master
 
 docker-build:
-  # Official docker image.
-  image: docker:latest
+  image: tmaier/docker-compose:latest
   stage: build
   services:
     - docker:dind
   before_script:
+    - docker info
+    - docker-compose --version
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
     - docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" .
+    - sh run_test.sh
     - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+  artifacts:
+    paths:
+      - test/build
   except:
     - master
