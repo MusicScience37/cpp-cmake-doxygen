@@ -67,7 +67,7 @@ llvm-cov show -instr-profile=coverage.profdata \
 llvm-cov show -instr-profile=coverage.profdata \
     -object ../src/libtest_add.so -object ../src/test_add_test \
     -ignore-filename-regex='Test/*' \
-    -format=html > coverage.html
+    -format=html -output-dir=html
 llvm-cov report -instr-profile=coverage.profdata \
     -object ../src/libtest_add.so -object ../src/test_add_test \
     -ignore-filename-regex='Test/*' \
