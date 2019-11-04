@@ -20,17 +20,17 @@
 cd $(dirname $0)
 
 echo ""
-echo ">> build with cmake"
+echo ">> build with cmake and gcc"
 echo ""
 rm -rf build
-mkdir build
-cd build
-cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
+mkdir -p build/gcc
+cd build/gcc
+cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ../..
 cmake --build .
 ctest -V .
 
 echo ""
-echo ">> collect coverage"
+echo ">> collect coverage with lcov (and gcov)"
 echo ""
 COV=./coverage/coverage.info
 HTML=./coverage/html
@@ -42,7 +42,40 @@ lcov --rc lcov_branch_coverage=1 --remove $COV "*/Test/*" --output-file $COV
 lcov --rc lcov_branch_coverage=1 --list $COV
 genhtml --rc lcov_branch_coverage=1 --output-directory $HTML $COV
 
+echo ""
+echo ">> build with cmake and clang"
+echo ""
 cd ../
+mkdir clang
+cd clang
+cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+    -DCMAKE_CXX_COMPILER=clang++ ../..
+cmake --build .
+mkdir coverage
+export LLVM_PROFILE_FILE=$(pwd)/coverage/coverage_%p.profraw
+ctest -V .
+
+echo ""
+echo ">> collect coverage with llvm-profdata llvm-cov"
+echo ""
+cd coverage
+llvm-profdata merge -o coverage.profdata coverage_*.profraw
+llvm-cov show -instr-profile=coverage.profdata \
+    -object ../src/libtest_add.so -object ../src/test_add_test \
+    -ignore-filename-regex='Test/*' \
+    > coverage.txt
+llvm-cov show -instr-profile=coverage.profdata \
+    -object ../src/libtest_add.so -object ../src/test_add_test \
+    -ignore-filename-regex='Test/*' \
+    -format=html -output-dir=html
+llvm-cov report -instr-profile=coverage.profdata \
+    -object ../src/libtest_add.so -object ../src/test_add_test \
+    -ignore-filename-regex='Test/*' \
+    | tee coverage_summary.txt
+line_cov=$(cat coverage_summary.txt | awk '{ if (NF > 0) { last = $NF } } END { print last }')
+echo "Line Coverage: $line_cov"
+
+cd ../../..
 echo ""
 echo ">> PlantUML"
 echo ""
@@ -58,7 +91,7 @@ echo ""
 echo ">> clang-tidy"
 echo ""
 mkdir build/clang-tidy
-clang-tidy -checks=* -p=build/compile_commands.json src/add.cpp \
+clang-tidy -checks=* -p=build/gcc/compile_commands.json src/add.cpp \
     | tee build/clang-tidy/clang-tidy.log
 
 echo ""

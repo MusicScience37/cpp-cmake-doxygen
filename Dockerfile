@@ -54,11 +54,15 @@ RUN apt install -y libllvm-9-ocaml-dev libllvm9 llvm-9 llvm-9-tools llvm-9-dev l
 RUN ln -s $(which clang-9) /usr/local/bin/clang && \
     ln -s $(which clang++-9) /usr/local/bin/clang++ && \
     ln -s $(which clang-tidy-9) /usr/local/bin/clang-tidy && \
-    ln -s $(which clang-format-9) /usr/local/bin/clang-format
+    ln -s $(which clang-format-9) /usr/local/bin/clang-format && \
+    ln -s $(which llvm-profdata-9) /usr/local/bin/llvm-profdata && \
+    ln -s $(which llvm-cov-9) /usr/local/bin/llvm-cov
 RUN clang --version && \
     clang++ --version && \
     clang-tidy --version && \
-    clang-format --version
+    clang-format --version && \
+    llvm-profdata --help && \
+    llvm-cov --version
 
 # lcov (gcov is in gcc)
 WORKDIR /usr/local/lcov

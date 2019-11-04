@@ -5,8 +5,13 @@ target_sources(test_add
         add.cpp
     PUBLIC
         add.h)
-target_compile_options(test_add PUBLIC --coverage)
-target_link_options(test_add PUBLIC --coverage)
+if (CMAKE_CXX_COMPILER_ID MATCHES "GNU")
+    target_compile_options(test_add PUBLIC --coverage)
+    target_link_options(test_add PUBLIC --coverage)
+elseif (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+    target_compile_options(test_add PUBLIC -fprofile-instr-generate -fcoverage-mapping)
+    target_link_options(test_add PUBLIC -fprofile-instr-generate -fcoverage-mapping)
+endif()
 
 add_executable(test_add_test)
 target_sources(test_add_test
