@@ -51,9 +51,27 @@ cd clang
 cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
     -DCMAKE_CXX_COMPILER=clang++ ../..
 cmake --build .
+mkdir coverage
+export LLVM_PROFILE_FILE=$(pwd)/coverage/coverage_%p.profraw
 ctest -V .
 
-cd ../..
+echo ""
+echo ">> collect coverage with llvm-profdata llvm-cov"
+echo ""
+cd coverage
+llvm-profdata merge -o coverage.profdata coverage_*.profraw
+llvm-cov show -instr-profile=coverage.profdata \
+    -object ../src/libtest_add.so -object ../src/test_add_test \
+    -ignore-filename-regex='Test/*' \
+    > coverage.txt
+llvm-cov report -instr-profile=coverage.profdata \
+    -object ../src/libtest_add.so -object ../src/test_add_test \
+    -ignore-filename-regex='Test/*' \
+    | tee coverage_summary.txt
+line_cov=$(cat coverage_summary.txt | awk '{ if (NF > 0) { last = $NF } } END { print last }')
+echo "Line Coverage: $line_cov"
+
+cd ../../..
 echo ""
 echo ">> PlantUML"
 echo ""
