@@ -16,5 +16,6 @@
 
 # this is a shell script to build and test an image
 
-docker-compose -f docker-compose.test.yml up --build
-docker-compose -f docker-compose.test.yml down
+compose_file=$(dirname $0)/cpp-cmake-doxygen/docker-compose.test.yml
+docker-compose -f $compose_file up --build
+docker-compose -f $compose_file down
