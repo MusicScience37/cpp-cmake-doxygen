@@ -16,5 +16,5 @@
 
 # this is a shell script to build an image and make a shell from the image
 
-docker build -t cpp-cmake-doxygen .
+docker build -t cpp-cmake-doxygen cpp-cmake-doxygen
 docker run --rm -it cpp-cmake-doxygen bash
