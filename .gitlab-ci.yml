@@ -8,7 +8,7 @@ docker-build-master:
     - docker-compose --version
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
-    - docker build --pull -t "$CI_REGISTRY_IMAGE" .
+    - docker build --pull -t "$CI_REGISTRY_IMAGE" cpp-cmake-doxygen
     - sh run_test.sh
     - docker push "$CI_REGISTRY_IMAGE"
   artifacts:
@@ -27,7 +27,7 @@ docker-build:
     - docker-compose --version
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
-    - docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" .
+    - docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" cpp-cmake-doxygen
     - sh run_test.sh
     - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
   artifacts:
