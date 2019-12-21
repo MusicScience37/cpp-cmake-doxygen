@@ -16,7 +16,7 @@ This project develops a docker image for c++ development with following tools:
 |                Tool                 | Version  |                                  Note                                  |
 | :---------------------------------- | :------- | :--------------------------------------------------------------------- |
 | [gcc](https://gcc.gnu.org/)         | 8.3.0    | gcc, g++, gcov, lcov                                                   |
-| [CMake](https://cmake.org/)         | 3.15.5   |                                                                        |
+| [CMake](https://cmake.org/)         | 3.16.2   |                                                                        |
 | [Plantuml](http://plantuml.com/en/) | (latest) |                                                                        |
 | [Doxygen](http://www.doxygen.nl/)   | 1.8.16   |                                                                        |
 | [LLVM](https://llvm.org/)           | 9.0.0    | clang, clang++, clang-format, clang-tidy, llvm-profdata, llvm-cov, ... |

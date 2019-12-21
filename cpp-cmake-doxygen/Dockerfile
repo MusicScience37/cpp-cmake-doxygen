@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-FROM musicscience37/gcc-cmake:version-0.1
+FROM musicscience37/gcc-cmake:version-1.1
 
 # Plantuml for Doxygen
 ENV PLANTUML_JAR_PATH="/usr/local/plantuml/plantuml.jar"
